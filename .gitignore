@@ -5,3 +5,32 @@ __pycache__/
 *.log
 *.tmp
 *.swp
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Credentials and private keys
+*.pem
+*.key
+credentials
+secrets/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.swp
+
+# IDE
+.vscode/
+.idea/

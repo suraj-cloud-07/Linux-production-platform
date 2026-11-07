@@ -1,7 +1,8 @@
 [Unit]
 Description=Linux Production Platform
 After=network.target
-
+StartLimitIntervalSec=60
+StartLimitBurst=5
 [Service]
 Type=simple
 User=suraj_barla
@@ -11,6 +12,34 @@ ExecStart=/home/suraj_barla/linux-production-platform/app/.venv/bin/python /home
 Restart=on-failure
 RestartSec=5
 Environment=PYTHONUNBUFFERED=1
+ProcSubset=pid
+# Capability Hardening
+CapabilityBoundingSet=
+AmbientCapabilities=
+# Security Hardening
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+ProtectKernelLogs=true
+UMask=0077
+# Additional Security Hardening
+PrivateDevices=true
+ProtectProc=invisible
+RestrictRealtime=true
+RestrictSUIDSGID=true
+LockPersonality=true
+ProtectClock=true
+ProtectHome=read-only
+RestrictAddressFamilies=AF_INET AF_UNIX
+IPAddressDeny=any
+IPAddressAllow=127.0.0.0/8
+IPAddressAllow=::1/128
+# System Call Filtering
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
 
 [Install]
 WantedBy=multi-user.target
